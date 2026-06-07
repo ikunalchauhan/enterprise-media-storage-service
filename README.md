@@ -35,22 +35,14 @@ The objective of this project is to build a scalable object storage platform whi
 
 ### Bucket Management & API Documentation Completed
 
-✅ Bucket Creation API
-
-✅ Bucket Deletion API
-
-✅ Bucket Listing API
-
-✅ DTO Layer
-
-✅ Service Layer
-
-✅ Controller Layer
-
-✅ MinIO Integration
-
-✅ AWS S3 SDK Integration
-
+✅ Bucket Creation API  
+✅ Bucket Deletion API  
+✅ Bucket Listing API  
+✅ DTO Layer  
+✅ Service Layer  
+✅ Controller Layer  
+✅ MinIO Integration  
+✅ AWS S3 SDK Integration  
 ✅ Swagger/OpenAPI Documentation
 
 ---
@@ -104,37 +96,25 @@ The objective of this project is to build a scalable object storage platform whi
 
 ## Swagger UI
 
-Place today's screenshot here:
-
-```text
-docs/screenshots/milestone-01/swagger-bucket-management.png
-```
-
 ![Swagger UI](docs/screenshots/milestone-01/swagger-bucket-management.png)
 
 ---
 
 ## Bucket Creation API
 
-```text
-docs/screenshots/milestone-01/bucket-create.png
-```
+![Bucket Creation](docs/screenshots/milestone-01/bucket-create.png)
 
 ---
 
 ## Bucket Listing API
 
-```text
-docs/screenshots/milestone-01/bucket-list.png
-```
+![Bucket Listing](docs/screenshots/milestone-01/bucket-list.png)
 
 ---
 
 ## MinIO Console Verification
 
-```text
-docs/screenshots/milestone-01/minio-console.png
-```
+![MinIO Console](docs/screenshots/milestone-01/minio-console.png)
 
 ---
 
@@ -142,22 +122,8 @@ docs/screenshots/milestone-01/minio-console.png
 
 ```text
 enterprise-storage-service
-
 ├── docs
-│   ├── architecture
-│   ├── banner
-│   └── screenshots
-│
 ├── src
-│   ├── config
-│   ├── controller
-│   ├── dto
-│   ├── entity
-│   ├── exception
-│   ├── repository
-│   ├── service
-│   └── util
-│
 ├── postman
 ├── docker
 └── README.md
@@ -210,41 +176,6 @@ enterprise-storage-service
 
 ---
 
-# 🔄 Future CI/CD Pipeline
-
-```text
-Developer Push
-      │
-      ▼
-GitHub Actions
-      │
-      ▼
-Build
-      │
-      ▼
-Unit Tests
-      │
-      ▼
-Package
-      │
-      ▼
-Deploy
-```
-
----
-
-# 🧠 Engineering Principles
-
-- Clean Architecture
-- SOLID Principles
-- Layered Design
-- Production Readiness
-- Cloud Storage Integration
-- API-First Development
-- Scalability & Maintainability
-
----
-
 # 👨‍💻 Author
 
 ### Kunal
@@ -252,5 +183,3 @@ Deploy
 Backend Developer
 
 Java • Spring Boot • MongoDB • MinIO • AWS S3 • Distributed Storage
-
-⭐ Building production-grade backend systems one milestone at a time.
