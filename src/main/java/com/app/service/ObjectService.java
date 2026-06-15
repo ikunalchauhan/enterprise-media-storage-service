@@ -1,5 +1,5 @@
 package com.app.service;
 
-public class ObjectService {
+public interface ObjectService {
 
 }

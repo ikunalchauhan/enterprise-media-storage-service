@@ -1,44 +1,42 @@
 package com.app.controller;
 
-import java.util.List;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
 import com.app.dto.BucketRequest;
 import com.app.service.BucketService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/buckets")
-@Validated
 public class BucketController {
 
-	private final BucketService bucketService;
+    private final BucketService bucketService;
 
-	public BucketController(BucketService bucketService) {
-		this.bucketService = bucketService;
-	}
+    public BucketController(BucketService bucketService) {
 
-	@PostMapping
-	public ResponseEntity<String> createBucket(@RequestBody BucketRequest request) {
+        this.bucketService = bucketService;
+    }
 
-		bucketService.createBucket(request.getBucketName());
+    @PostMapping
+    public ResponseEntity<String> createBucket(@RequestBody BucketRequest request) {
 
-		return ResponseEntity.ok("Bucket created successfully");
-	}
+        bucketService.createBucket(request.getBucketName());
 
-	@DeleteMapping("/{bucketName}")
-	public ResponseEntity<String> deleteBucket(@PathVariable String bucketName) {
+        return ResponseEntity.ok("Bucket created successfully");
+    }
 
-		bucketService.deleteBucket(bucketName);
+    @DeleteMapping("/{bucketName}")
+    public ResponseEntity<String> deleteBucket(@PathVariable String bucketName) {
 
-		return ResponseEntity.ok("Bucket deleted successfully");
-	}
+        bucketService.deleteBucket(bucketName);
 
-	@GetMapping
-	public ResponseEntity<List<String>> getBuckets() {
+        return ResponseEntity.ok("Bucket deleted successfully");
+    }
 
-		return ResponseEntity.ok(bucketService.getAllBuckets());
-	}
+    @GetMapping
+    public ResponseEntity<List<String>> getBuckets() {
+
+        return ResponseEntity.ok(bucketService.getAllBuckets());
+    }
 }
