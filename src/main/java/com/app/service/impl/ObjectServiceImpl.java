@@ -38,7 +38,6 @@ public class ObjectServiceImpl implements ObjectService {
     public FileMetadata upload(MultipartFile file, String bucketName, String uploadedBy) {
 
         try {
-
             String originalName = file.getOriginalFilename();
             String extension = "";
             int index = originalName.lastIndexOf(".");
@@ -65,7 +64,6 @@ public class ObjectServiceImpl implements ObjectService {
             metadata.setChecksum(checksum);
             metadata.setEtag(response.eTag());
             metadata.setStatus(FileStatus.ACTIVE);
-
             return repository.save(metadata);
         }
         catch (Exception ex) {

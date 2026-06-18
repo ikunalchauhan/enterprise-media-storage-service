@@ -13,8 +13,6 @@
 ![AWS SDK](https://img.shields.io/badge/AWS_S3_SDK-v2-yellow?style=for-the-badge)
 ![Swagger](https://img.shields.io/badge/OpenAPI-Swagger-success?style=for-the-badge)
 
-<img src="docs/banner/banner.png" width="100%" alt="Enterprise Storage Service Banner">
-
 ### 🎯 Building an Enterprise-Grade Storage Platform Inspired by Amazon S3
 
 </div>
@@ -23,27 +21,62 @@
 
 # 📖 Overview
 
-Enterprise Storage Service is a production-oriented backend application inspired by modern cloud storage solutions such as Amazon S3, MinIO, Dropbox, and Google Cloud Storage.
+Enterprise Storage Service is a production-oriented backend application inspired by Amazon S3 and modern object storage systems.
 
-The objective of this project is to build a scalable object storage platform while mastering enterprise backend engineering practices.
+The project focuses on implementing enterprise-grade storage operations, metadata management, object lifecycle handling, and scalable backend architecture using Spring Boot, MinIO, MongoDB, and AWS S3 SDK.
 
 ---
 
 # 🏆 Current Milestone
 
-## Version: v0.2.0
+## Version: v0.4.0
 
-### Bucket Management & API Documentation Completed
+### Object Storage Core Completed
 
-✅ Bucket Creation API  
-✅ Bucket Deletion API  
-✅ Bucket Listing API  
+### Infrastructure
+
+✅ Spring Boot Setup  
+✅ MongoDB Integration  
+✅ MinIO Integration  
+✅ AWS S3 SDK v2 Integration  
+✅ Swagger/OpenAPI Documentation  
+✅ Docker Compose Environment
+
+### Bucket Management
+
+✅ Create Bucket  
+✅ Delete Bucket  
+✅ List Buckets  
+✅ Bucket Existence Validation
+
+### Object Storage
+
+✅ Upload Object API  
+✅ Download Object API  
+✅ Delete Object API  
+✅ List Objects API  
+✅ Copy Object API  
+✅ Move Object API  
+✅ Rename Object API
+
+### Metadata Management
+
+✅ MongoDB Metadata Persistence  
+✅ UUID-Based Object Naming  
+✅ SHA-256 File Checksum  
+✅ ETag Storage  
+✅ Upload Timestamp (Instant)  
+✅ File Status Tracking
+
+### Engineering
+
 ✅ DTO Layer  
 ✅ Service Layer  
 ✅ Controller Layer  
-✅ MinIO Integration  
-✅ AWS S3 SDK Integration  
-✅ Swagger/OpenAPI Documentation
+✅ Repository Layer  
+✅ Global Exception Handling  
+✅ Custom Exceptions  
+✅ Utility Classes
 
 ---
 
@@ -65,69 +98,27 @@ The objective of this project is to build a scalable object storage platform whi
 
 ---
 
-# 🛠️ Technology Stack
-
-| Layer | Technology |
-|---------|------------|
-| Language | Java 21 |
-| Framework | Spring Boot 3 |
-| Object Storage | MinIO |
-| Database | MongoDB |
-| Cloud SDK | AWS S3 SDK v2 |
-| API Documentation | Swagger/OpenAPI |
-| Validation | Jakarta Validation |
-| Build Tool | Maven |
-| Security | Spring Security (Planned) |
-| Deployment | Docker (Planned) |
-
----
-
 # 📡 Implemented APIs
 
-| Method | Endpoint | Description |
-|----------|----------|-------------|
-| POST | `/api/buckets` | Create Bucket |
-| GET | `/api/buckets` | List Buckets |
-| DELETE | `/api/buckets/{bucketName}` | Delete Bucket |
+## Bucket APIs
 
----
+| Method | Endpoint |
+|----------|----------|
+| POST | /api/buckets |
+| GET | /api/buckets |
+| DELETE | /api/buckets/{bucketName} |
 
-# 📸 Milestone 1 Screenshots
+## Object APIs
 
-## Swagger UI
-
-![Swagger UI](docs/screenshots/milestone-01/swagger-bucket-management.png)
-
----
-
-## Bucket Creation API
-
-![Bucket Creation](docs/screenshots/milestone-01/bucket-create.png)
-
----
-
-## Bucket Listing API
-
-![Bucket Listing](docs/screenshots/milestone-01/bucket-list.png)
-
----
-
-## MinIO Console Verification
-
-![MinIO Console](docs/screenshots/milestone-01/minio-console.png)
-
----
-
-# 📂 Project Structure
-
-```text
-enterprise-storage-service
-├── docs
-├── src
-├── postman
-├── docker
-└── README.md
-```
+| Method | Endpoint |
+|----------|----------|
+| POST | /api/objects/upload |
+| GET | /api/objects |
+| GET | /api/objects/download/{id} |
+| DELETE | /api/objects/{id} |
+| POST | /api/objects/copy |
+| POST | /api/objects/move |
+| POST | /api/objects/rename |
 
 ---
 
@@ -140,39 +131,25 @@ enterprise-storage-service
 - [x] MinIO Configuration
 - [x] AWS S3 SDK Integration
 - [x] Bucket Management APIs
-- [x] Swagger/OpenAPI Integration
+- [x] Object Upload API
+- [x] Object Download API
+- [x] Object Delete API
+- [x] Object Listing API
+- [x] Copy Object API
+- [x] Move Object API
+- [x] Rename Object API
+- [x] Metadata Persistence
+- [x] SHA-256 Checksum Support
+- [x] UUID File Naming
+- [x] Swagger/OpenAPI
+- [x] Global Exception Handling
+- [x] Docker Compose Setup
 
 ## In Progress
 
-- [ ] Object Upload Module
-
-## Planned
-
-- [ ] Object Download Module
-- [ ] Metadata Persistence
-- [ ] Rename Object
-- [ ] Move Object
-- [ ] Copy Object
-- [ ] Validation Layer
-- [ ] Exception Handling
-- [ ] Structured Logging
-- [ ] JWT Authentication
-- [ ] Docker Deployment
-- [ ] CI/CD Pipeline
-- [ ] Presigned URLs
-- [ ] Streaming Support
-
----
-
-# 🚀 Release History
-
-| Version | Description | Status |
-|----------|------------|---------|
-| v0.1.0 | Project Initialization | ✅ |
-| v0.2.0 | Bucket Management + Swagger Documentation | ✅ |
-| v0.3.0 | Object Upload Module | 🚧 |
-| v0.4.0 | Download Module | ⏳ |
-| v1.0.0 | Production Release | ⏳ |
+- [ ] Metadata Search Module
+- [ ] Pagination & Sorting
+- [ ] File Status Lifecycle Management
 
 ---
 
