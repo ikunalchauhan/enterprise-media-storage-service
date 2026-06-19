@@ -31,9 +31,9 @@ The objective of this project is to build a scalable object storage platform whi
 
 # 🏆 Current Milestone
 
-## Version: v0.4.0
+## Version: v0.5.0
 
-### Object Storage Core Completed
+### Metadata Management Completed
 
 ### Infrastructure
 
@@ -69,6 +69,13 @@ The objective of this project is to build a scalable object storage platform whi
 ✅ ETag Storage
 ✅ Upload Timestamp (Instant)
 ✅ File Status Tracking
+✅ Metadata Search API
+✅ Search By Filename
+✅ Search By Bucket
+✅ Search By Uploaded User
+✅ Search By Status
+✅ Pagination Support
+✅ Sorting Support
 
 ### Engineering
 
@@ -138,8 +145,18 @@ The objective of this project is to build a scalable object storage platform whi
 | POST | `/api/objects/move` | Move Object |
 | POST | `/api/objects/rename` | Rename Object |
 
----
+## Metadata APIs
 
+| Method | Endpoint | Description |
+|----------|----------|-------------|
+| GET | `/api/metadata` | Get All Metadata |
+| GET | `/api/metadata/{id}` | Get Metadata By Id |
+| GET | `/api/metadata/search?name=` | Search By Filename |
+| GET | `/api/metadata/bucket/{bucketName}` | Search By Bucket |
+| GET | `/api/metadata/user/{uploadedBy}` | Search By User |
+| GET | `/api/metadata/status/{status}` | Search By Status |
+
+---
 
 # 📂 Project Structure
 
@@ -151,6 +168,28 @@ enterprise-storage-service
 ├── docker
 └── README.md
 ```
+
+---
+
+# 📊 Project Status
+
+Current Progress: ~70%
+
+### Completed Modules
+
+✅ Bucket Management
+
+✅ Object Storage Operations
+
+✅ Metadata Management
+
+### Current Focus
+
+🚧 File Lifecycle Management
+
+- Soft Delete
+- Restore
+- Archive
 
 ---
 
@@ -171,6 +210,9 @@ enterprise-storage-service
 - [x] Move Object API
 - [x] Rename Object API
 - [x] Metadata Persistence
+- [x] Metadata Search APIs
+- [x] Pagination
+- [x] Sorting
 - [x] SHA-256 Checksum Support
 - [x] UUID File Naming
 - [x] Swagger/OpenAPI
@@ -179,15 +221,13 @@ enterprise-storage-service
 
 ## In Progress
 
-- [ ] Metadata Search Module
-- [ ] Pagination & Sorting
 - [ ] File Status Lifecycle Management
+- [ ] Soft Delete
+- [ ] Restore File
+- [ ] Archive File
 
 ## Planned
 
-- [ ] Soft Delete
-- [ ] Restore Object
-- [ ] Archive Object
 - [ ] Structured Logging
 - [ ] Actuator Monitoring
 - [ ] JWT Authentication
@@ -207,7 +247,8 @@ enterprise-storage-service
 | v0.2.0 | Bucket Management + Swagger Documentation | ✅ |
 | v0.3.0 | Metadata Model + Exception Layer | ✅ |
 | v0.4.0 | Object Storage Operations | ✅ |
-| v0.5.0 | Metadata Search Module | 🚧 |
+| v0.5.0 | Metadata Management, Search, Pagination & Sorting | ✅ |
+| v0.6.0 | File Lifecycle Management | 🚧 |
 | v1.0.0 | Production Release | ⏳ |
 
 ---
