@@ -131,6 +131,14 @@ public class ObjectServiceImpl implements ObjectService {
         DeleteObjectRequest deleteRequest = DeleteObjectRequest.builder().bucket(request.getSourceBucket()).key(request.getObjectKey()).build();
 
         s3Client.deleteObject(deleteRequest);
+
+//        bug fix - metaData Update with target bucket name
+        FileMetadata metaData = repository.findBystoredName(request.getObjectKey())
+                .orElseThrow(() -> new MetadataNotFoundException(request.getObjectKey()));
+
+        metaData.setBucketName(request.getTargetBucket());
+
+        repository.save(metaData);
     }
 
     @Override

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface FileMetadataRepository extends MongoRepository<FileMetadata, String> {
 
@@ -16,6 +17,8 @@ public interface FileMetadataRepository extends MongoRepository<FileMetadata, St
     List<FileMetadata> findByBucketName(String bucketName);
 
     List<FileMetadata> findByOriginalNameContainingIgnoreCase(String name);
+
+    Optional<FileMetadata> findBystoredName(String storedName);
 
     Page<FileMetadata> findByOriginalNameContainingIgnoreCase(String originalName, Pageable pageable);
 
