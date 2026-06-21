@@ -29,4 +29,6 @@ public interface FileMetadataRepository extends MongoRepository<FileMetadata, St
     Page<FileMetadata> findByUploadedBy(String uploadedBy, Pageable pageable);
 
     Page<FileMetadata> findByStatus(String status, Pageable pageable);
+
+    long countByBucketName(String bucketName);
 }

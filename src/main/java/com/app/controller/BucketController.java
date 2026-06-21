@@ -2,6 +2,7 @@ package com.app.controller;
 
 import com.app.dto.BucketRequest;
 import com.app.service.BucketService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class BucketController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createBucket(@RequestBody BucketRequest request) {
+    public ResponseEntity<String> createBucket(@Valid @RequestBody BucketRequest request) {
 
         bucketService.createBucket(request.getBucketName());
 

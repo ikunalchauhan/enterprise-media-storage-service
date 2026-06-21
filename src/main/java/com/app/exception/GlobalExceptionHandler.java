@@ -3,6 +3,7 @@ package com.app.exception;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -10,6 +11,24 @@ import java.time.Instant;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidationException(MethodArgumentNotValidException ex, HttpServletRequest request) {
+        String message = ex.getBindingResult()
+                            .getFieldErrors()
+                            .stream()
+                            .map(error -> error.getField() + " : " + error.getDefaultMessage())
+                            .findFirst().orElse("Validation failed");
+
+        ErrorResponse response = new ErrorResponse(
+                Instant.now(),
+                HttpStatus.BAD_REQUEST.value(),
+                "Validation Failed",
+                message,
+                request.getRequestURI());
+
+        return ResponseEntity.badRequest().body(response);
+    }
 
     @ExceptionHandler(BucketAlreadyExistsException.class)
     public ResponseEntity<ErrorResponse> handleBucketAlreadyExists(BucketAlreadyExistsException ex, HttpServletRequest request) {
@@ -54,19 +73,15 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InvalidBucketException.class)
-    public ResponseEntity<ErrorResponse> handleInvalidBucket(
+    public ResponseEntity<ErrorResponse> handleInvalidBucket(InvalidBucketException ex, HttpServletRequest request) {
 
-            InvalidBucketException ex,
+        return buildResponse(ex.getMessage(), HttpStatus.BAD_REQUEST, request.getRequestURI());
+    }
 
-            HttpServletRequest request) {
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<ErrorResponse> handleValidationException(ValidationException ex, HttpServletRequest request) {
 
-        return buildResponse(
-
-                ex.getMessage(),
-
-                HttpStatus.BAD_REQUEST,
-
-                request.getRequestURI());
+        return buildResponse(ex.getMessage(), HttpStatus.BAD_REQUEST, request.getRequestURI());
     }
 
     @ExceptionHandler(StorageException.class)

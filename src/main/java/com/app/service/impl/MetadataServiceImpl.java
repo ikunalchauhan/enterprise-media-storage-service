@@ -20,8 +20,10 @@ public class MetadataServiceImpl implements MetadataService {
     }
 
     @Override
-    public Page<FileMetadata> getAllFiles(int page, int size, String sortBy) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
+    public Page<FileMetadata> getAllFiles(int page, int size, String sortBy, String direction) {
+        Sort sort = direction.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+        Pageable pageable = PageRequest.of(page, size, sort);
+
         return repository.findAll(pageable);
     }
 
@@ -58,5 +60,15 @@ public class MetadataServiceImpl implements MetadataService {
     public Page<FileMetadata> searchByFileType(String fileType, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return repository.findByFileType(fileType, pageable);
+    }
+
+    @Override
+    public long count() {
+        return repository.count();
+    }
+
+    @Override
+    public long countByBucket(String bucketName) {
+        return repository.countByBucketName(bucketName);
     }
 }

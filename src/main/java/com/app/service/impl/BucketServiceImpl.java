@@ -4,7 +4,6 @@ import com.app.exception.BucketAlreadyExistsException;
 import com.app.exception.BucketNotFoundException;
 import com.app.exception.InvalidFileException;
 import com.app.service.BucketService;
-import com.app.validator.BucketValidator;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.*;
@@ -23,9 +22,6 @@ public class BucketServiceImpl implements BucketService {
 
     @Override
     public void createBucket(String bucketName) {
-
-        BucketValidator.validate(bucketName);
-
         if (bucketExists(bucketName)) {
             throw new BucketAlreadyExistsException(bucketName);
         }

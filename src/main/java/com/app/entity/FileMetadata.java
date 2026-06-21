@@ -1,6 +1,7 @@
 package com.app.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
@@ -10,10 +11,13 @@ public class FileMetadata {
 
     @Id
     private String id;
+
+    @Indexed
     private String originalName;
 
     private String storedName;
 
+    @Indexed
     private String bucketName;
 
     private Long fileSize;
@@ -22,14 +26,17 @@ public class FileMetadata {
 
     private String uploadedBy;
 
+    @Indexed
     private Instant uploadedAt;
 
     private String etag;
 
     private String checksum;
 
+    @Indexed
     private String status;
 
+    @Indexed
     private String fileType;
 
     public FileMetadata() {}

@@ -2,26 +2,23 @@ package com.app.util;
 
 public final class StorageSizeUtil {
 
+    private static final String[] UNITS = {"B", "KB", "MB", "GB", "TB", "PB"};
+
     private StorageSizeUtil() {
     }
 
     public static String format(long bytes) {
-        if (bytes < 1024) {
-            return bytes + " B";
+        if (bytes < 0) {
+            throw new IllegalArgumentException("Bytes cannot be negative");
+        }
+        double size = bytes;
+        int unitIndex = 0;
+
+        while (size >= 1024 && unitIndex < UNITS.length - 1) {
+            size /= 1024;
+            unitIndex++;
         }
 
-        double kb = bytes / 1024.0;
-        if (kb < 1024) {
-            return String.format("%.2f KB", kb);
-        }
-
-        double mb = kb / 1024.0;
-        if (mb < 1024) {
-            return String.format("%.2f MB", mb);
-        }
-
-        double gb = mb / 1024.0;
-
-        return String.format("%.2f GB", gb);
+        return String.format("%.2f %s", size, UNITS[unitIndex]);
     }
 }

@@ -1,10 +1,16 @@
 package com.app.dto;
 
+import jakarta.validation.constraints.NotBlank;
 
 public class CopyRequest {
 
+    @NotBlank(message = "Source bucket is required")
     private String sourceBucket;
+
+    @NotBlank(message = "Target bucket is required")
     private String targetBucket;
+
+    @NotBlank(message = "Object key is required")
     private String objectKey;
 
     public CopyRequest() {

@@ -7,8 +7,10 @@ import com.app.entity.FileMetadata;
 import com.app.exception.MetadataNotFoundException;
 import com.app.repository.FileMetadataRepository;
 import com.app.service.ObjectService;
+import jakarta.validation.Valid;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,9 +32,9 @@ public class ObjectController {
     }
 
     @PostMapping("/upload")
-    public FileMetadata upload(@RequestParam MultipartFile file, @RequestParam String bucketName, @RequestParam String uploadedBy) {
+    public ResponseEntity<FileMetadata> upload(@RequestParam MultipartFile file, @RequestParam String bucketName, @RequestParam String uploadedBy) {
 
-        return objectService.upload(file, bucketName, uploadedBy);
+        return ResponseEntity.status(HttpStatus.CREATED).body(objectService.upload(file, bucketName, uploadedBy));
     }
 
     @GetMapping("/download/{id}")
@@ -42,10 +44,7 @@ public class ObjectController {
 
         InputStream stream = objectService.download(id);
 
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + metadata.getOriginalName() + "\"")
-                .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .body(new InputStreamResource(stream));
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + metadata.getOriginalName() + "\"").contentType(MediaType.APPLICATION_OCTET_STREAM).body(new InputStreamResource(stream));
     }
 
     @GetMapping
@@ -60,19 +59,19 @@ public class ObjectController {
     }
 
     @PostMapping("/copy")
-    public ResponseEntity<String> copy(@RequestBody CopyRequest request) {
+    public ResponseEntity<String> copy(@Valid @RequestBody CopyRequest request) {
         objectService.copy(request);
         return ResponseEntity.ok("Copied Successfully");
     }
 
     @PostMapping("/move")
-    public ResponseEntity<String> move(@RequestBody MoveRequest request) {
+    public ResponseEntity<String> move(@Valid @RequestBody MoveRequest request) {
         objectService.move(request);
         return ResponseEntity.ok("Moved Successfully");
     }
 
     @PostMapping("/rename")
-    public ResponseEntity<String> rename(@RequestBody RenameRequest request) {
+    public ResponseEntity<String> rename(@Valid @RequestBody RenameRequest request) {
         objectService.rename(request);
         return ResponseEntity.ok("Renamed Successfully");
     }

@@ -7,12 +7,14 @@ import com.app.entity.FileMetadata;
 import com.app.exception.FileDownloadException;
 import com.app.exception.FileUploadException;
 import com.app.exception.MetadataNotFoundException;
+import com.app.exception.ValidationException;
 import com.app.repository.FileMetadataRepository;
 import com.app.service.ObjectService;
 import com.app.util.ChecksumUtil;
 import com.app.util.FileNameGenerator;
 import com.app.util.FileStatus;
 import com.app.util.FileTypeUtil;
+import com.app.validator.UploadValidator;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -37,19 +39,19 @@ public class ObjectServiceImpl implements ObjectService {
 
     @Override
     public FileMetadata upload(MultipartFile file, String bucketName, String uploadedBy) {
-
         try {
-            String originalName = file.getOriginalFilename();
 
-            String storedName = FileNameGenerator.generate(originalName);
+            String storedName = FileNameGenerator.generate(file.getOriginalFilename());
             String checksum = ChecksumUtil.sha256(file.getInputStream());
+
+            UploadValidator.validate(file, bucketName, uploadedBy);
 
             PutObjectRequest request = PutObjectRequest.builder().bucket(bucketName).key(storedName).contentType(file.getContentType()).build();
 
             PutObjectResponse response = s3Client.putObject(request, RequestBody.fromBytes(file.getBytes()));
 
             FileMetadata metadata = new FileMetadata();
-            metadata.setOriginalName(originalName);
+            metadata.setOriginalName(file.getOriginalFilename());
             metadata.setStoredName(storedName);
             metadata.setBucketName(bucketName);
             metadata.setFileSize(file.getSize());
@@ -104,7 +106,6 @@ public class ObjectServiceImpl implements ObjectService {
 
     @Override
     public void copy(CopyRequest request) {
-
         CopyObjectRequest copyRequest = CopyObjectRequest.builder().sourceBucket(request.getSourceBucket()).sourceKey(request.getObjectKey()).destinationBucket(request.getTargetBucket()).destinationKey(request.getObjectKey()).build();
 
         s3Client.copyObject(copyRequest);
@@ -112,6 +113,9 @@ public class ObjectServiceImpl implements ObjectService {
 
     @Override
     public void move(MoveRequest request) {
+        if (request.getSourceBucket().equals(request.getTargetBucket())) {
+            throw new ValidationException("Source and target bucket cannot be same");
+        }
 
         CopyRequest copyRequest = new CopyRequest();
 
@@ -137,6 +141,10 @@ public class ObjectServiceImpl implements ObjectService {
 
     @Override
     public void rename(RenameRequest request) {
+        if (request.getOldName().equals(request.getNewName())) {
+            throw new ValidationException("Old and new names cannot be same");
+        }
+
         CopyObjectRequest copyRequest = CopyObjectRequest.builder().sourceBucket(request.getBucketName()).sourceKey(request.getOldName()).destinationBucket(request.getBucketName()).destinationKey(request.getNewName()).build();
 
         s3Client.copyObject(copyRequest);

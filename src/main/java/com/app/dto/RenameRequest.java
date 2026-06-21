@@ -1,10 +1,16 @@
 package com.app.dto;
 
+import jakarta.validation.constraints.NotBlank;
 
 public class RenameRequest {
 
+    @NotBlank(message = "Bucket name is required")
     private String bucketName;
+
+    @NotBlank(message = "Old name is required")
     private String oldName;
+
+    @NotBlank(message = "New name is required")
     private String newName;
 
     public RenameRequest() {
