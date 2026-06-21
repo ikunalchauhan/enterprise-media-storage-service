@@ -1,8 +1,8 @@
 # 🏆 Current Milestone
 
-## Version: v0.5.0
+## Version: v0.5.1
 
-### ✅ Metadata Management Completed
+### ✅ Metadata Management & Validation Completed
 
 ## 🏗️ Infrastructure
 
@@ -50,6 +50,24 @@
 - ✅ Search By File Type
 - ✅ Pagination Support
 - ✅ Sorting Support
+- ✅ Metadata Count API
+- ✅ Bucket Metadata Count API
+- ✅ MongoDB Indexing Support
+
+## 🛡️ Validation & Exception Handling
+
+- ✅ Upload Request Validation
+- ✅ Bucket Name Validation
+- ✅ File Size Validation
+- ✅ File Content Type Validation
+- ✅ Business Validation Rules
+- ✅ Global Exception Handler
+- ✅ ValidationException
+- ✅ MetadataNotFoundException
+- ✅ FileUploadException
+- ✅ FileDownloadException
+- ✅ BucketOperationException
+- ✅ Consistent API Error Responses
 
 ## 🧰 Utility Components
 
@@ -68,10 +86,13 @@
 - ✅ Service Layer
 - ✅ Controller Layer
 - ✅ Exception Layer
+- ✅ Validation Layer
 - ✅ Global Exception Handling
 - ✅ Custom Exceptions
 - ✅ Layered Architecture
 - ✅ Clean Code Structure
+- ✅ UUID-Based File Storage Strategy
+- ✅ Production-Oriented Metadata Design
 
 ## 📊 Current Project Status
 
@@ -81,6 +102,8 @@
 - ✅ Bucket Management
 - ✅ Object Storage Operations
 - ✅ Metadata Management
+- ✅ Validation Framework
+- ✅ Exception Framework
 
 ### In Progress
 
@@ -113,6 +136,7 @@
 | v0.3.0 | Metadata Model + Exception Layer | ✅ |
 | v0.4.0 | Object Storage Operations | ✅ |
 | v0.5.0 | Metadata Search, Pagination & File Classification | ✅ |
+| v0.5.1 | Validation Layer & Metadata Enhancements | ✅ |
 | v0.6.0 | File Lifecycle Management | 🚧 |
 | v0.7.0 | Monitoring & Logging | ⏳ |
 | v0.8.0 | Security & Authorization | ⏳ |
@@ -124,8 +148,9 @@
 - ✅ Bucket Management: 100%
 - ✅ Object Storage: 100%
 - ✅ Metadata Management: 100%
+- ✅ Validation & Exceptions: 100%
 - 🚧 File Lifecycle: 0%
 
 ### Overall Progress
 
-**~70% Complete**
+**~80% Complete**
