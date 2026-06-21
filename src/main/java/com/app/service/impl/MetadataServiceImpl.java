@@ -53,4 +53,10 @@ public class MetadataServiceImpl implements MetadataService {
         Pageable pageable = PageRequest.of(page, size);
         return repository.findByStatus(status, pageable);
     }
+
+    @Override
+    public Page<FileMetadata> searchByFileType(String fileType, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return repository.findByFileType(fileType, pageable);
+    }
 }

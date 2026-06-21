@@ -20,6 +20,8 @@ public interface FileMetadataRepository extends MongoRepository<FileMetadata, St
 
     Optional<FileMetadata> findBystoredName(String storedName);
 
+    Page<FileMetadata> findByFileType(String fileType, Pageable pageable);
+
     Page<FileMetadata> findByOriginalNameContainingIgnoreCase(String originalName, Pageable pageable);
 
     Page<FileMetadata> findByBucketName(String bucketName, Pageable pageable);

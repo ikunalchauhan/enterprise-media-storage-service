@@ -10,7 +10,9 @@ import com.app.exception.MetadataNotFoundException;
 import com.app.repository.FileMetadataRepository;
 import com.app.service.ObjectService;
 import com.app.util.ChecksumUtil;
+import com.app.util.FileNameGenerator;
 import com.app.util.FileStatus;
+import com.app.util.FileTypeUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -20,7 +22,6 @@ import software.amazon.awssdk.services.s3.model.*;
 import java.io.InputStream;
 import java.time.Instant;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,14 +40,8 @@ public class ObjectServiceImpl implements ObjectService {
 
         try {
             String originalName = file.getOriginalFilename();
-            String extension = "";
-            int index = originalName.lastIndexOf(".");
 
-            if (index != -1) {
-                extension = originalName.substring(index);
-            }
-
-            String storedName = UUID.randomUUID() + extension;
+            String storedName = FileNameGenerator.generate(originalName);
             String checksum = ChecksumUtil.sha256(file.getInputStream());
 
             PutObjectRequest request = PutObjectRequest.builder().bucket(bucketName).key(storedName).contentType(file.getContentType()).build();
@@ -64,9 +59,10 @@ public class ObjectServiceImpl implements ObjectService {
             metadata.setChecksum(checksum);
             metadata.setEtag(response.eTag());
             metadata.setStatus(FileStatus.ACTIVE);
+            metadata.setFileType(FileTypeUtil.determineType(file.getContentType()));
+
             return repository.save(metadata);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new FileUploadException(ex.getMessage());
         }
     }
@@ -79,8 +75,7 @@ public class ObjectServiceImpl implements ObjectService {
             GetObjectRequest request = GetObjectRequest.builder().bucket(metadata.getBucketName()).key(metadata.getStoredName()).build();
 
             return s3Client.getObject(request);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new FileDownloadException(ex.getMessage());
         }
     }
@@ -133,8 +128,7 @@ public class ObjectServiceImpl implements ObjectService {
         s3Client.deleteObject(deleteRequest);
 
 //        bug fix - metaData Update with target bucket name
-        FileMetadata metaData = repository.findBystoredName(request.getObjectKey())
-                .orElseThrow(() -> new MetadataNotFoundException(request.getObjectKey()));
+        FileMetadata metaData = repository.findBystoredName(request.getObjectKey()).orElseThrow(() -> new MetadataNotFoundException(request.getObjectKey()));
 
         metaData.setBucketName(request.getTargetBucket());
 
@@ -143,7 +137,6 @@ public class ObjectServiceImpl implements ObjectService {
 
     @Override
     public void rename(RenameRequest request) {
-
         CopyObjectRequest copyRequest = CopyObjectRequest.builder().sourceBucket(request.getBucketName()).sourceKey(request.getOldName()).destinationBucket(request.getBucketName()).destinationKey(request.getNewName()).build();
 
         s3Client.copyObject(copyRequest);

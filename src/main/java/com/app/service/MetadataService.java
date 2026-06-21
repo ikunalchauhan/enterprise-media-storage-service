@@ -9,6 +9,8 @@ public interface MetadataService {
 
     FileMetadata getById(String id);
 
+    Page<FileMetadata> searchByFileType(String fileType, int page, int size);
+
     Page<FileMetadata> searchByFileName(String fileName, int page, int size);
 
     Page<FileMetadata> searchByBucket(String bucketName, int page, int size);
