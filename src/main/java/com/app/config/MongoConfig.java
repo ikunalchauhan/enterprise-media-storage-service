@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class MongoConfig {
 
-    @Value("${mongodb.uri}")
+    @Value("${spring.data.mongodb.uri}")
     private String mongoUri;
 
     @Bean
