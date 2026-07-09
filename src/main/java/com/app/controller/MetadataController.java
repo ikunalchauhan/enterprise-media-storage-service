@@ -1,6 +1,7 @@
 package com.app.controller;
 
 import com.app.entity.FileMetadata;
+import com.app.entity.FileStatus;
 import com.app.service.MetadataService;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -54,7 +55,7 @@ public class MetadataController {
     }
 
     @GetMapping("/status/{status}")
-    public Page<FileMetadata> searchByStatus(@PathVariable String status,
+    public Page<FileMetadata> searchByStatus(@PathVariable FileStatus status,
                                              @RequestParam(defaultValue = "0") int page,
                                              @RequestParam(defaultValue = "10") int size) {
 

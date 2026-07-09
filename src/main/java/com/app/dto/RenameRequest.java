@@ -8,10 +8,10 @@ public class RenameRequest {
     private String bucketName;
 
     @NotBlank(message = "Old name is required")
-    private String oldName;
+    private String oldStoredName;
 
     @NotBlank(message = "New name is required")
-    private String newName;
+    private String newStoredName;
 
     public RenameRequest() {
     }
@@ -24,19 +24,19 @@ public class RenameRequest {
         this.bucketName = bucketName;
     }
 
-    public String getOldName() {
-        return oldName;
+    public String getOldStoredName() {
+        return oldStoredName;
     }
 
-    public void setOldName(String oldName) {
-        this.oldName = oldName;
+    public void setOldStoredName(String oldStoredName) {
+        this.oldStoredName = oldStoredName;
     }
 
-    public String getNewName() {
-        return newName;
+    public String getNewStoredName() {
+        return newStoredName;
     }
 
-    public void setNewName(String newName) {
-        this.newName = newName;
+    public void setNewStoredName(String newStoredName) {
+        this.newStoredName = newStoredName;
     }
 }

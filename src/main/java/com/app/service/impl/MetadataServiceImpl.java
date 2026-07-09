@@ -1,6 +1,7 @@
 package com.app.service.impl;
 
 import com.app.entity.FileMetadata;
+import com.app.entity.FileStatus;
 import com.app.exception.MetadataNotFoundException;
 import com.app.repository.FileMetadataRepository;
 import com.app.service.MetadataService;
@@ -51,7 +52,7 @@ public class MetadataServiceImpl implements MetadataService {
     }
 
     @Override
-    public Page<FileMetadata> searchByStatus(String status, int page, int size) {
+    public Page<FileMetadata> searchByStatus(FileStatus status, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return repository.findByStatus(status, pageable);
     }

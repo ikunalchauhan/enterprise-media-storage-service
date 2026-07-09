@@ -1,6 +1,7 @@
 package com.app.service;
 
 import com.app.entity.FileMetadata;
+import com.app.entity.FileStatus;
 import org.springframework.data.domain.Page;
 
 public interface MetadataService {
@@ -17,7 +18,7 @@ public interface MetadataService {
 
     Page<FileMetadata> searchByUser(String uploadedBy, int page, int size);
 
-    Page<FileMetadata> searchByStatus(String status, int page, int size);
+    Page<FileMetadata> searchByStatus(FileStatus status, int page, int size);
 
     long count();
 

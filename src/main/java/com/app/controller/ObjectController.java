@@ -7,6 +7,7 @@ import com.app.entity.FileMetadata;
 import com.app.exception.MetadataNotFoundException;
 import com.app.repository.FileMetadataRepository;
 import com.app.service.ObjectService;
+import com.app.validator.UploadValidator;
 import jakarta.validation.Valid;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -33,7 +34,7 @@ public class ObjectController {
 
     @PostMapping("/upload")
     public ResponseEntity<FileMetadata> upload(@RequestParam MultipartFile file, @RequestParam String bucketName, @RequestParam String uploadedBy) {
-
+        UploadValidator.validate(file, bucketName, uploadedBy);
         return ResponseEntity.status(HttpStatus.CREATED).body(objectService.upload(file, bucketName, uploadedBy));
     }
 
