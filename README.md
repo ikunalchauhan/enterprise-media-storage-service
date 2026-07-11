@@ -1,8 +1,10 @@
 # 🏆 Current Milestone
 
-## Version: v0.6.0
+## Version: **v0.6.5**
 
 ### ✅ File Lifecycle Management Completed
+
+### 🚧 Storage Statistics Foundation In Progress
 
 ------------------------------------------------------------------------
 
@@ -41,6 +43,9 @@
 -   ✅ Bucket Validation Before Upload
 -   ✅ Streaming Upload Support
 -   ✅ Object Status Validation Before Download
+-   ✅ Metadata Synchronization After Move
+-   ✅ Metadata Synchronization After Rename
+-   ✅ Copy Between Buckets Support
 
 ------------------------------------------------------------------------
 
@@ -51,23 +56,11 @@
 -   ✅ SHA-256 File Checksum
 -   ✅ ETag Storage
 -   ✅ File Type Classification
--   ✅ Instant Timestamp Support
--   ✅ Uploaded Timestamp
--   ✅ Updated Timestamp
--   ✅ Archived Timestamp
--   ✅ Deleted Timestamp
+-   ✅ Uploaded / Updated / Archived / Deleted Timestamps
 -   ✅ File Status Tracking
--   ✅ Metadata Search API
--   ✅ Search By Filename
--   ✅ Search By Bucket
--   ✅ Search By Uploaded User
--   ✅ Search By Status
--   ✅ Search By File Type
--   ✅ Pagination Support
--   ✅ Sorting Support
--   ✅ Metadata Count API
--   ✅ Bucket Metadata Count API
--   ✅ MongoDB Indexing Support
+-   ✅ Metadata Search APIs
+-   ✅ Pagination & Sorting
+-   ✅ MongoDB Indexing
 
 ------------------------------------------------------------------------
 
@@ -77,10 +70,7 @@
 -   ✅ Restore File
 -   ✅ Soft Delete
 -   ✅ Permanent Delete
--   ✅ Lifecycle Controller
--   ✅ Lifecycle Service
 -   ✅ Lifecycle Validator
--   ✅ Lifecycle Response DTO
 -   ✅ Status Transition Validation
 -   ✅ Active Files API
 -   ✅ Archived Files API
@@ -88,104 +78,64 @@
 
 ------------------------------------------------------------------------
 
-## 🛡️ Validation & Exception Handling
+## 📊 Storage Statistics
 
--   ✅ Upload Request Validation
--   ✅ Bucket Validation
--   ✅ File Name Validation
--   ✅ File Size Validation
--   ✅ Content Type Validation
--   ✅ Business Validation Rules
--   ✅ Lifecycle Validation Rules
--   ✅ Global Exception Handler
--   ✅ ValidationException
--   ✅ MetadataNotFoundException
--   ✅ FileUploadException
--   ✅ FileDownloadException
--   ✅ BucketOperationException
--   ✅ Consistent API Error Responses
+### ✅ Completed
+
+-   ✅ Statistics Module Structure
+-   ✅ Storage Overview API
+-   ✅ Bucket Statistics API
+-   ✅ User Statistics API
+-   ✅ File Type Statistics API
+-   ✅ Metadata Statistics API
+-   ✅ MongoTemplate Aggregations
+-   ✅ Repository / Service / Controller Layers
+
+### 🚧 Remaining
+
+-   Dashboard API
+-   Storage Growth Analytics
+-   MapStruct Integration
+-   Projection Refactoring
 
 ------------------------------------------------------------------------
 
-## 🧰 Utility Components
+## 🛡️ Validation & Exception Handling
 
--   ✅ ChecksumUtil
--   ✅ FileNameGenerator
--   ✅ FileStatus Enum
--   ✅ FileTypeUtil
--   ✅ StorageSizeUtil
--   ✅ DateUtil
--   ✅ Constants Utility
+-   ✅ Upload Validation
+-   ✅ Bucket Validation
+-   ✅ Lifecycle Validation
+-   ✅ Global Exception Handling
+-   ✅ Consistent API Error Responses
 
 ------------------------------------------------------------------------
 
 ## ⚙️ Engineering
 
--   ✅ DTO Layer
--   ✅ Repository Layer
--   ✅ Service Layer
--   ✅ Controller Layer
--   ✅ Exception Layer
--   ✅ Validation Layer
--   ✅ Global Exception Handling
--   ✅ Custom Exceptions
 -   ✅ Layered Architecture
 -   ✅ Clean Code Structure
--   ✅ UUID-Based File Storage Strategy
--   ✅ Production-Oriented Metadata Design
 -   ✅ Enterprise Lifecycle Architecture
-
-------------------------------------------------------------------------
-
-## 📊 Current Project Status
-
-### ✅ Completed Modules
-
--   ✅ Infrastructure Setup
--   ✅ Bucket Management
--   ✅ Object Storage Operations
--   ✅ Metadata Management
--   ✅ Validation Framework
--   ✅ Exception Framework
--   ✅ File Lifecycle Management
-
-### 🚧 In Progress
-
--   🚧 Storage Statistics
--   🚧 Storage Analytics
--   🚧 Dashboard APIs
-
-### ⏳ Planned
-
--   ⏳ Structured Logging (SLF4J + Logback)
--   ⏳ Spring Boot Actuator
--   ⏳ JWT Authentication
--   ⏳ Role Based Access Control (RBAC)
--   ⏳ Presigned URLs
--   ⏳ Range Downloads
--   ⏳ Video Streaming
--   ⏳ Multipart Uploads
--   ⏳ Storage Analytics Dashboard
--   ⏳ CI/CD Pipeline
--   ⏳ Kubernetes Deployment
+-   ✅ Production-Oriented Repository Design
+-   ✅ MongoTemplate Aggregation Design
 
 ------------------------------------------------------------------------
 
 ## 🚀 Release History
 
-Version      Description                                         Status
-  ------------ --------------------------------------------------- --------
-v0.1.0       Project Initialization                              ✅
-v0.2.0       Bucket Management + Swagger                         ✅
-v0.3.0       Metadata Model + Exception Layer                    ✅
-v0.4.0       Object Storage Operations                           ✅
-v0.5.0       Metadata Search, Pagination & File Classification   ✅
-v0.5.1       Validation Layer & Metadata Enhancements            ✅
-**v0.6.0**   **File Lifecycle Management**                       ✅
-v0.7.0       Storage Statistics & Analytics                      🚧
-v0.8.0       Monitoring & Logging                                ⏳
-v0.9.0       Security & Authorization                            ⏳
-v1.0.0       Enterprise Storage Platform                         ⏳
+Version      Description                         Status
+  ------------ ----------------------------------- --------
+v0.1.0       Project Initialization              ✅
+v0.2.0       Bucket Management + Swagger         ✅
+v0.3.0       Metadata & Exception Layer          ✅
+v0.4.0       Object Storage Operations           ✅
+v0.5.0       Metadata Search & Pagination        ✅
+v0.5.1       Validation Enhancements             ✅
+v0.6.0       File Lifecycle Management           ✅
+**v0.6.5**   **Storage Statistics Foundation**   🚧
+v0.7.0       Storage Analytics Dashboard         ⏳
+v0.8.0       Monitoring & Logging                ⏳
+v0.9.0       Security & Authorization            ⏳
+v1.0.0       Enterprise Storage Platform         ⏳
 
 ------------------------------------------------------------------------
 
@@ -197,8 +147,6 @@ v1.0.0       Enterprise Storage Platform                         ⏳
 -   ✅ Metadata Management: 100%
 -   ✅ Validation & Exceptions: 100%
 -   ✅ File Lifecycle Management: 100%
--   🚧 Storage Statistics: 0%
+-   🚧 Storage Statistics: 70%
 
-### Overall Progress
-
-## **\~85% Complete**
+### **Overall Progress: \~90% Complete**

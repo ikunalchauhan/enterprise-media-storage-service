@@ -1,4 +1,4 @@
-package com.app.statistics.service;
+package com.app.statistics.repository;
 
 import com.app.statistics.dto.BucketStatisticsResponse;
 import com.app.statistics.dto.FileTypeStatisticsResponse;
@@ -8,7 +8,7 @@ import com.app.statistics.dto.UserStatisticsResponse;
 
 import java.util.List;
 
-public interface StorageStatisticsService {
+public interface StorageStatisticsRepository {
 
     StorageOverviewResponse getOverview();
 

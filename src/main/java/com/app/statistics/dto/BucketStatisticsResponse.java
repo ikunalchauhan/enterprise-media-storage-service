@@ -1,31 +1,31 @@
 package com.app.statistics.dto;
 
-public class UserStatisticsResponse {
+public class BucketStatisticsResponse {
 
-    private String uploadedBy;
+    private String bucketName;
     private long totalFiles;
     private long totalSize;
     private String readableSize;
 
-    public UserStatisticsResponse() {
+    public BucketStatisticsResponse() {
     }
 
-    public UserStatisticsResponse(String uploadedBy,
-                                  long totalFiles,
-                                  long totalSize,
-                                  String readableSize) {
-        this.uploadedBy = uploadedBy;
+    public BucketStatisticsResponse(String bucketName,
+                                    long totalFiles,
+                                    long totalSize,
+                                    String readableSize) {
+        this.bucketName = bucketName;
         this.totalFiles = totalFiles;
         this.totalSize = totalSize;
         this.readableSize = readableSize;
     }
 
-    public String getUploadedBy() {
-        return uploadedBy;
+    public String getBucketName() {
+        return bucketName;
     }
 
-    public void setUploadedBy(String uploadedBy) {
-        this.uploadedBy = uploadedBy;
+    public void setBucketName(String bucketName) {
+        this.bucketName = bucketName;
     }
 
     public long getTotalFiles() {
