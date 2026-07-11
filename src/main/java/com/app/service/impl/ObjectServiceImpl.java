@@ -141,7 +141,11 @@ public class ObjectServiceImpl implements ObjectService {
 
     @Override
     public void copy(CopyRequest request) {
-        CopyObjectRequest copyRequest = CopyObjectRequest.builder().sourceBucket(request.getSourceBucket()).sourceKey(request.getObjectKey()).destinationBucket(request.getTargetBucket()).destinationKey(request.getObjectKey()).build();
+        CopyObjectRequest copyRequest = CopyObjectRequest.builder().
+                        sourceBucket(request.getSourceBucket()).
+                        sourceKey(request.getObjectKey()).
+                        destinationBucket(request.getTargetBucket()).
+                        destinationKey(request.getObjectKey()).build();
 
         s3Client.copyObject(copyRequest);
     }
